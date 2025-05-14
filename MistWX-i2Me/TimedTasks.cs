@@ -89,7 +89,7 @@ public class TimedTasks
             watch.Restart();
             Config.DataEndpointConfig dataConfig = Config.config.DataConfig;
             
-            Log.Info("Running hourly record collection");
+            Log.Info("Running scheduled record collection");
             
             // Implements suggestion #3 in the issue tracker.
             

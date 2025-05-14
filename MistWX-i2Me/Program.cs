@@ -1,4 +1,5 @@
 ﻿using System.Data.SQLite;
+using System.Text.RegularExpressions;
 using System.Xml.Serialization;
 using MistWX_i2Me;
 using MistWX_i2Me.API;
@@ -142,18 +143,26 @@ public class Program
         {
             if (configLocationKeys.Contains(i.Key))
             {
-                Log.Debug(i.Value);
+                Log.Debug($"{i.Key}: {i.Value}");
                 if (string.IsNullOrEmpty(i.Value.ToString()))
                 {
                     continue;
                 }
 
-
                 try
                 {
-                    string choppedValue = i.Value.ToString().Split("_")[2];
-
-                    locations.Add(choppedValue);
+                    if (Regex.IsMatch(i.Value.ToString(), @"^\d\d\d\d\d(?:,\d\d\d\d\d)*$")) {
+                        string[] choppedValues = i.Value.ToString().Split(",");
+                        foreach (string choppedValue in choppedValues)
+                        {
+                            locations.Add(choppedValue);
+                        }
+                    }
+                    else
+                    {
+                        string choppedValue = i.Value.ToString().Split("_")[2];
+                        locations.Add(choppedValue);
+                    }
                 }
                 catch (Exception ex)
                 {
