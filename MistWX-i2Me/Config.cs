@@ -77,7 +77,7 @@ public class Config
     public class LocConfig
     {
         [XmlElement] public bool UseNationalLocations { get; set; } = false;
-        [XmlElement] public string[] NationalLocations { get; set; } = {
+        [XmlArray("Location")] public string[] NationalLocations { get; set; } = {
                 "USNM0004", "USGA0028", "USMD0018", "USME0017", "USMT0031", "USAL0054", "USND0037", "USID0025",
                 "USMA0046", "USNY0081", "USVT0033", "USNC0121", "USIL0225", "USOH0188", "USOH0195", "USTX0327",
                 "USCO0105", "USIA0231", "USMI0229", "USAZ0068", "USSC0140", "USCT0094", "USTX0617", "USIN0305",
