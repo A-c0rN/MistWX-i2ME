@@ -89,6 +89,27 @@ public class Config
                 "USSD0283", "USNV0076", "USCA0967", "USUT0225", "USTX1200", "USCA0982", "USCA0987", "USWA0395",
                 "USWA0422", "USMO0787", "USFL0481", "USOK0537"
             };
+        [XmlArray("LocationKeys")] 
+        [XmlArrayItem("Key")] 
+        public List<string> LocationKeys { get; set; } = new List<string> {
+            "PrimaryLocation",
+            "NearbyLocation1",
+            "NearbyLocation2",
+            "NearbyLocation3",
+            "NearbyLocation4",
+            "NearbyLocation5",
+            "NearbyLocation6",
+            "NearbyLocation7",
+            "NearbyLocation8",
+            "MetroMapCity1",
+            "MetroMapCity2",
+            "MetroMapCity3",
+            "MetroMapCity4",
+            "MetroMapCity5",
+            "MetroMapCity6",
+            "MetroMapCity7",
+            "MetroMapCity8",
+        };
     }
 
     [XmlRoot("UnitConfig")]

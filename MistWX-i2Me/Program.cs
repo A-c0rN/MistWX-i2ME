@@ -113,26 +113,30 @@ public class Program
             mpc = (MachineProductConfig) new XmlSerializer(typeof(MachineProductConfig)).Deserialize(reader);
         }
 
-        var configLocationKeys = new List<string>
+        //TODO: Find a better way to do this.
+        var configLocationKeys = new List<string> 
         {
-            "PrimaryLocation",
-            "NearbyLocation1",
-            "NearbyLocation2",
-            "NearbyLocation3",
-            "NearbyLocation4",
-            "NearbyLocation5",
-            "NearbyLocation6",
-            "NearbyLocation7",
-            "NearbyLocation8",
-            "MetroMapCity1",
-            "MetroMapCity2",
-            "MetroMapCity3",
-            "MetroMapCity4",
-            "MetroMapCity5",
-            "MetroMapCity6",
-            "MetroMapCity7",
-            "MetroMapCity8",
-        };
+                "PrimaryLocation",
+                "NearbyLocation1",
+                "NearbyLocation2",
+                "NearbyLocation3",
+                "NearbyLocation4",
+                "NearbyLocation5",
+                "NearbyLocation6",
+                "NearbyLocation7",
+                "NearbyLocation8",
+                "MetroMapCity1",
+                "MetroMapCity2",
+                "MetroMapCity3",
+                "MetroMapCity4",
+                "MetroMapCity5",
+                "MetroMapCity6",
+                "MetroMapCity7",
+                "MetroMapCity8",
+            };
+        if (config.LocationConfig.LocationKeys != null) {
+            configLocationKeys = config.LocationConfig.LocationKeys;
+        }
 
         foreach (ConfigItem i in mpc.ConfigDef.ConfigItems.ConfigItem)
         {
@@ -153,7 +157,13 @@ public class Program
                 }
                 catch (Exception ex)
                 {
-                    continue;
+                    Log.Debug($"Failed to configure locations for {i.Key}");
+                    Log.Debug(ex.Message);
+                    // Print stacktrace to the debug console if applicable
+                    if (!string.IsNullOrEmpty(ex.StackTrace))
+                    {
+                        Log.Debug(ex.StackTrace);
+                    }
                 }
             }
         }
